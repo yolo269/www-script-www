@@ -1,0 +1,192 @@
+local player = game.Players.LocalPlayer
+local playerGui = player:WaitForChild("PlayerGui")
+
+-- Password Screen
+local passwordGui = Instance.new("ScreenGui")
+passwordGui.Name = "PasswordGUI"
+passwordGui.ResetOnSpawn = false
+passwordGui.Parent = playerGui
+
+local passwordFrame = Instance.new("Frame")
+passwordFrame.Size = UDim2.new(0, 300, 0, 150)
+passwordFrame.Position = UDim2.new(0.5, -150, 0.5, -75)
+passwordFrame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+passwordFrame.BorderColor3 = Color3.fromRGB(139, 69, 19)
+passwordFrame.BorderSizePixel = 3
+passwordFrame.Parent = passwordGui
+
+local passwordCorner = Instance.new("UICorner")
+passwordCorner.CornerRadius = UDim.new(0, 12)
+passwordCorner.Parent = passwordFrame
+
+local passwordBox = Instance.new("TextBox")
+passwordBox.Size = UDim2.new(0.9, 0, 0, 40)
+passwordBox.Position = UDim2.new(0.05, 0, 0.3, 0)
+passwordBox.PlaceholderText = "Enter Password..."
+passwordBox.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+passwordBox.BorderColor3 = Color3.fromRGB(139, 69, 19)
+passwordBox.TextColor3 = Color3.fromRGB(255, 255, 255)
+passwordBox.ClearTextOnFocus = false
+passwordBox.Font = Enum.Font.Code
+passwordBox.TextScaled = true
+passwordBox.Parent = passwordFrame
+
+local boxCorner = Instance.new("UICorner")
+boxCorner.CornerRadius = UDim.new(0, 8)
+boxCorner.Parent = passwordBox
+
+local submitButton = Instance.new("TextButton")
+submitButton.Size = UDim2.new(0.5, 0, 0, 30)
+submitButton.Position = UDim2.new(0.25, 0, 0.7, 0)
+submitButton.Text = "Enter"
+submitButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+submitButton.BorderColor3 = Color3.fromRGB(139, 69, 19)
+submitButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+submitButton.Font = Enum.Font.Code
+submitButton.TextScaled = true
+submitButton.Parent = passwordFrame
+
+local submitCorner = Instance.new("UICorner")
+submitCorner.CornerRadius = UDim.new(0, 8)
+submitCorner.Parent = submitButton
+
+local function createMainGui()
+	local screenGui = Instance.new("ScreenGui")
+	screenGui.Name = "b4c0ngu1"
+	screenGui.ResetOnSpawn = false
+	screenGui.Parent = playerGui
+
+	local mainFrame = Instance.new("Frame")
+	mainFrame.Size = UDim2.new(0, 500, 0, 450)
+	mainFrame.Position = UDim2.new(0.5, -250, 0.5, -225)
+	mainFrame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+	mainFrame.BorderColor3 = Color3.fromRGB(139, 69, 19)
+	mainFrame.BorderSizePixel = 3
+	mainFrame.Parent = screenGui
+
+	local frameCorner = Instance.new("UICorner")
+	frameCorner.CornerRadius = UDim.new(0, 12)
+	frameCorner.Parent = mainFrame
+
+	-- Page Title
+	local pageTitle = Instance.new("TextLabel")
+	pageTitle.Size = UDim2.new(1, 0, 0, 30)
+	pageTitle.Position = UDim2.new(0, 0, 0, 10)
+	pageTitle.BackgroundTransparency = 1
+	pageTitle.Text = "Noob Scripts"
+	pageTitle.Font = Enum.Font.Bracious
+	pageTitle.TextScaled = true
+	pageTitle.TextColor3 = Color3.fromRGB(255, 0, 0) -- will cycle
+	pageTitle.Parent = mainFrame
+
+	-- RGB cycling effect for page title
+	spawn(function()
+		local hue = 0
+		while pageTitle.Parent do
+			hue = (hue + 0.01) % 1
+			pageTitle.TextColor3 = Color3.fromHSV(hue, 1, 1)
+			wait(0.03)
+		end
+	end)
+
+	-- Arrows (No functions added)
+	local function createArrow(text, position)
+		local arrow = Instance.new("TextButton")
+		arrow.Size = UDim2.new(0, 40, 0, 30)
+		arrow.Position = position
+		arrow.Text = text
+		arrow.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+		arrow.BorderColor3 = Color3.fromRGB(139, 69, 19)
+		arrow.TextColor3 = Color3.fromRGB(255, 255, 255)
+		arrow.Font = Enum.Font.Code
+		arrow.TextScaled = true
+		arrow.Parent = mainFrame
+
+		local arrowCorner = Instance.new("UICorner")
+		arrowCorner.CornerRadius = UDim.new(0, 8)
+		arrowCorner.Parent = arrow
+	end
+
+	createArrow("<", UDim2.new(0.25, -20, 0, 10))
+	createArrow(">", UDim2.new(0.75, -20, 0, 10))
+
+	-- Sections for buttons
+	local leftSection = Instance.new("Frame")
+	leftSection.Size = UDim2.new(0.5, -10, 0.75, -20)
+	leftSection.Position = UDim2.new(0, 10, 0, 50)
+	leftSection.BackgroundTransparency = 1
+	leftSection.Parent = mainFrame
+
+	local rightSection = Instance.new("Frame")
+	rightSection.Size = UDim2.new(0.5, -10, 0.75, -20)
+	rightSection.Position = UDim2.new(0.5, 0, 0, 50)
+	rightSection.BackgroundTransparency = 1
+	rightSection.Parent = mainFrame
+
+	local function createButton(parent, yOffset)
+		local button = Instance.new("TextButton")
+		button.Size = UDim2.new(1, 0, 0, 30)
+		button.Position = UDim2.new(0, 0, 0, yOffset)
+		button.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+		button.BorderColor3 = Color3.fromRGB(139, 69, 19)
+		button.Text = ""
+		button.TextColor3 = Color3.fromRGB(255, 255, 255)
+		button.Font = Enum.Font.Code
+		button.TextScaled = true
+		button.Parent = parent
+
+		local buttonCorner = Instance.new("UICorner")
+		buttonCorner.CornerRadius = UDim.new(0, 8)
+		buttonCorner.Parent = button
+
+		return button
+	end
+
+	-- 10 buttons total: 5 left, 5 right
+	local leftButtons = {}
+	local rightButtons = {}
+	for i = 0, 4 do
+		local offset = 5 + (i * 35)
+		table.insert(leftButtons, createButton(leftSection, offset))
+		table.insert(rightButtons, createButton(rightSection, offset))
+	end
+
+	-- Modify first left button for Infinite Yield
+	local firstLeftButton = leftButtons[1]
+	firstLeftButton.Text = "Infinite Yield"
+	firstLeftButton.MouseButton1Click:Connect(function()
+		loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+	end)
+
+	-- Close Button (with functionality)
+	local closeButton = Instance.new("TextButton")
+	closeButton.Size = UDim2.new(0, 100, 0, 30)
+	closeButton.Position = UDim2.new(0.5, -50, 1, -40)
+	closeButton.Text = "Close"
+	closeButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+	closeButton.BorderColor3 = Color3.fromRGB(139, 69, 19)
+	closeButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+	closeButton.Font = Enum.Font.Code
+	closeButton.TextScaled = true
+	closeButton.Parent = mainFrame
+
+	local closeCorner = Instance.new("UICorner")
+	closeCorner.CornerRadius = UDim.new(0, 8)
+	closeCorner.Parent = closeButton
+
+	closeButton.MouseButton1Click:Connect(function()
+		screenGui.Enabled = false -- hides the whole GUI
+	end)
+end
+
+-- Password Validation
+local correctPassword = "B4C0N4EVER"
+
+submitButton.MouseButton1Click:Connect(function()
+	if passwordBox.Text == correctPassword then
+		passwordGui:Destroy()
+		createMainGui()
+	else
+		-- Optional: Add error feedback here
+	end
+end)
